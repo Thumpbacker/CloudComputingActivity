@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            background-color: #000000;
+        }
+        header {
+            color: rgb(174, 22, 22);
+            text-align: center;
+            font-family: "Courier New", Arial, sans-serif;
+            padding: 5px 5px 5px 5px;
+            background-color: #969696;
+        }
+        button {
+            color:#000000;
+        }
+        main {
+            font-family: "Courier New", Arial, sans-serif;
+            color: #000000;
+            padding: 5px 5px 5px 5px;
+            background-color: #ffffff;
+            border-style: solid;
+            border-color: #969696;
+        }
+        table, th, td {
+            border: 3px solid #000000;
+            border-collapse: collapse;
+            padding: 4px;
+            text-align: center;
+        }
+        .navbar {
+            color: #000000;
+            text-align: center;
+            font-family: "Courier New", Arial, sans-serif;
+            padding: 5px 5px 5px 5px;
+            background-color: rgb(174, 22, 22);
+        }
+        .wrapper {
+            margin: auto;
+            width: 1000px;
+        }
+        .buttons {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Spy Gadget Imporium</h1>
+            <h2>Home to All Your Spy Needs</h2>
+        </header>
+        <div class="navbar"> 
+            <table class="buttons">
+                <tr>
+                    <td>
+                        <form method="get" action="#" th:action="@{/product/}">
+                            <button type="add">Gadget Catalog</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="get" action="#" th:action="@{/add_new_product/}">
+                            <button type="add">Add New Product</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="#" th:action="@{/product/search/}" th:object="${searchModel}">
+                            <input type="text" name="searchTerm" th:field="*{searchTerm}">
+                            <button type="text" name="search">Search</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <main>
+            <h2 th:text="${title}"></h2>
+            <table th:each="products : ${products}">
+                <tr>
+                    <th>Gadget Name</th>
+                    <td th:text="${products.gadgetName}"></td>
+                </tr>
+                <tr>
+                    <th>Date of Origin</th>
+                    <td th:text="${products.dateOfOrigin}"></td>
+                </tr>
+                <tr>
+                    <th>Lethality Rating</th>
+                    <td th:text="${products.lethalityRating}"></td>
+                </tr>
+                <tr>
+                    <th>Instructions</th>
+                    <td th:text="${products.instructions}"></td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td th:text="${products.description}"></td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td th:text="${products.price}"></td>
+                </tr>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        * {
+            font-family: Arial;
+            background-color: grey;
+        }
+        table, th, td {
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 4px;
+            text-align: center;
+        }
+        h1, .navbar {
+            text-align: center;
+        }
+        .navbar {
+            text-align: center;
+        }
+        button {
+            color:rgb(174, 22, 22)
+        }
+        .buttons {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Spy Stuff</h1>
+    <div class="navbar"> 
+        <table class="buttons">
+            <tr>
+                <td>
+                    <form method="get" action="#" th:action="@{/add_new_product/}">
+                        <button type="add">Add New Product</button>
+                    </form>
+                </td>
+                <td>
+                    <button type="update">Update Product</button>
+                </td>
+                <td>
+                    <form method="post" action="#" th:action="@{/product/search/}" th:object="${searchModel}">
+                        <input type="text" name="searchTerm" th:field="*{searchTerm}">
+                        <button type="text" name="search">Search</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p th:each="product : ${products}">
+        <h2 th:text="${product.gadgetName}"></h2>
+            <table>
+                <tr>
+                    <th>Gadget Name</th>
+                    <th>Lethality</th>
+                    <th>Description</th>
+                    <th>Instructions</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td th:text="${product.gadgetName}"></td>
+                    <td th:text="${product.lethalityRating}"></td>
+                    <td th:text="${product.description}"></td>
+                    <td th:text="${product.instructions}"></td>
+                    <td th:text="${product.price}"></td>
+                </tr>
+        </table>
+    </p>
+</body>
+</html>

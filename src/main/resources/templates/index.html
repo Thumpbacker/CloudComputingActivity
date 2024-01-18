@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            background-color: #000000;
+        }
+        header {
+            color: rgb(174, 22, 22);
+            text-align: center;
+            font-family: "Courier New", Arial, sans-serif;
+            padding: 5px 5px 5px 5px;
+            background-color: #969696;
+        }
+        button {
+            color:#000000;
+        }
+        main {
+            font-family: "Courier New", Arial, sans-serif;
+            color: #000000;
+            padding: 5px 5px 5px 5px;
+            background-color: #ffffff;
+            border-style: solid;
+            border-color: #969696;
+        }
+        table, th, td {
+            border: 3px solid #000000;
+            border-collapse: collapse;
+            padding: 4px;
+            text-align: center;
+        }
+        .navbar {
+            color: #000000;
+            text-align: center;
+            font-family: "Courier New", Arial, sans-serif;
+            padding: 5px 5px 5px 5px;
+            background-color: rgb(174, 22, 22);
+        }
+        .wrapper {
+            margin: auto;
+            width: 1000px;
+        }
+        .buttons {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Spy Gadget Imporium</h1>
+            <h2>Home to All Your Spy Needs</h2>
+        </header>
+        <div class="navbar"> 
+            <table class="buttons">
+                <tr>
+                    <td>
+                        <form method="get" action="#" th:action="@{/product/}">
+                            <button type="add">Gadget Catalog</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="get" action="#" th:action="@{/add_new_product/}">
+                            <button type="add">Add New Product</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="#" th:action="@{/product/search/}" th:object="${searchModel}">
+                            <input type="text" name="searchTerm" th:field="*{searchTerm}">
+                            <button type="text" name="search">Search</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <main>
+            <h2 th:text="${title}"></h2>
+            <table>
+                <tr>
+                    <th>Gadget Name</th>
+                    <th>Lethality</th>
+                    <th>Price</th>
+                    <th>Display Details</th>
+                    <th>Update Details</th>
+                    <th>Delete Product</th>
+                </tr>
+                <tr th:each="product : ${products}">
+                    <td th:text="${product.gadgetName}"></td>
+                    <td th:text="${product.lethalityRating}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td>
+                        <form action="#" th:action="@{/product/details}" th:object="${products}" method="get">
+                            <input name="id" type="hidden" th:value="${product.id}">
+                            <button type="submit" name="displayItem">Display</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="get" action="#" th:action="@{/product/update}">
+                            <button type="add">Update</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="#" th:action="@{/product/delete}" th:object="${product}" method="post"> 
+                            <input name="id" type="hidden" th:value="${product.id}">
+                            <button type="submit" name="deleteItem">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

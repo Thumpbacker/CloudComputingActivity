@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            background-color: #000000;
+        }
+        .wrapper {
+            margin: auto;
+            width: 1000px;
+        }
+        header {
+            color: rgb(174, 22, 22);
+            text-align: center;
+            font-family: "Courier New", Arial, sans-serif;
+            padding: 5px 5px 5px 5px;
+            background-color: #969696;
+        }
+        main {
+            font-family: "Courier New", Arial, sans-serif;
+            color: #000000;
+            padding: 5px 5px 5px 5px;
+            background-color: #ffffff;
+            border-style: solid;
+            border-color: #969696;
+        }
+        button {
+            color: #000000;
+        }
+        h1, h3, .img, .add {
+            text-align: center;
+        }
+        .inputs {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>Add New Product</h1>
+        </header>
+        <main>
+            <div class="img">
+                <img th:src="@{/logo.png}" alt="Spy Logo" width="200" height="200">
+            </div>
+            <h3>Enter New Product Info</h3>
+            <div class="add">
+                <form action="#" method="post" th:action="@{add}" th:object="${productModel}">
+                    <table class="inputs">
+                        <tr>
+                            <td>
+                                <label for="name">Product Name</label>
+                            </td>
+                            <td>
+                                <input type="text" name="name" th:field="*{gadgetName}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="date">Model Date (MM/DD/YYYY)</label>
+                            </td>
+                            <td>
+                                <input type="text" name="date" th:field="*{dateOfOrigin}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="rating">Lethality Rating</label>
+                            </td>
+                            <td>
+                                <input type="text" name="*{lethalityRating}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="photo">Photo URL</label>
+                            </td>
+                            <td>
+                                <input type="text" name="photo" th:field="*{photoFileName}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="instructions">Instructions</label>
+                            </td>
+                            <td>
+                                <input type="text" name="instructions" th:field="*{instructions}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="description">Description</label>
+                            </td>
+                            <td>
+                                <input type="text" name="description" th:field="*{description}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="price">Price</label>
+                            </td>
+                            <td>
+                                <input type="text" name="price" th:field="*{price}">
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit">Add Product</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
