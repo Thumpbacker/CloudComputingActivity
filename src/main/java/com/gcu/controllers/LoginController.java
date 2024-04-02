@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class LoginController implements ValidateLoginInterface {
 
     @Autowired
